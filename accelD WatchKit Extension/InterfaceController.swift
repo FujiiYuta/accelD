@@ -77,13 +77,13 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 //                "userAccelerationX": userAccelerationX,
 //                "userAccelerationY": userAccelerationY,
 //                "userAccelerationZ": userAccelerationZ
-                "attitude": attitude,
-                "gravity": gravity,
-                "rotationRate": rotationRate,
-                "userAcceleration": userAcceleration
+                "attitude": self.attitude,
+                "gravity": self.gravity,
+                "rotationRate": self.rotationRate,
+                "userAcceleration": self.userAcceleration
             ]
             
-            WCSession.default.sendMessage(applicationDict, replyHandler: {(reply) -> Void in
+            WCSession.default.sendMessage(self.applicationDict, replyHandler: {(reply) -> Void in
                 print(reply)
             }){(error) -> Void in
                 print(error)
