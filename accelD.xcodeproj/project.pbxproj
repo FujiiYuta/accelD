@@ -227,12 +227,22 @@
 				TargetAttributes = {
 					FDC44ADC2182B5D600733F21 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					FDC44AEE2182B5D800733F21 = {
 						CreatedOnToolsVersion = 10.0;
 					};
 					FDC44AFD2182B5D900733F21 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

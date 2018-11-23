@@ -15,25 +15,58 @@ import CoreMotion
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
+    @IBOutlet var StartBtn: WKInterfaceButton!
+    
+    @IBOutlet var StopBtn: WKInterfaceButton!
+    
+    @IBAction func pushStartBtn(){
+        StartBtn.setHidden(true)
+        StopBtn.setHidden(false)
+        print("start")
+        sendMessage()
+    }
+    
+    @IBAction func pushStopBtn(){
+    motionManager.stopDeviceMotionUpdates()
+        print("stop")
+        StartBtn.setHidden(false)
+        StopBtn.setHidden(true)
+        //とりあえずつけてみるが
+        sendMessage()
+    }
+    
+    
+    
     //変数の定義など
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
     
     var applicationDict = [String: String]()
-    var attitude = ""
-    var gravity = ""
-    var rotationRate = ""
-    var userAcceleration = ""
-//    var userAccelerationX = ""
-//    var userAccelerationY = ""
-//    var userAccelerationZ = ""
+//    var attitude = ""
+//    var gravity = ""
+//    var rotationRate = ""
+//    var userAcceleration = ""
+    var userAccelerationX = ""
+    var userAccelerationY = ""
+    var userAccelerationZ = ""
     
     override func awake(withContext context: Any?) {
         // Configure interface objects here.
         print("test")
         super.awake(withContext: context)
         activateSession()
-        
+        StopBtn.setHidden(true)
+    }
+    
+    
+    func activateSession(){
+        if WCSession.isSupported(){
+            let session: WCSession = WCSession.default
+            session.delegate = self 
+            session.activate()
+        }
+    }
+    func sendMessage(){
         if !motionManager.isDeviceMotionAvailable{
             print("Device Motion is not available")
             return
@@ -46,42 +79,30 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             if deviceMotion != nil{
                 //ここを3軸の加速度にする
-                self.attitude = "\(deviceMotion!.attitude)"
-                self.gravity = "\(deviceMotion!.gravity)"
-                self.rotationRate = "\(deviceMotion!.rotationRate)"
-                self.userAcceleration = "\(deviceMotion!.userAcceleration)"
-//                self.userAccelerationX = "\(deviceMotion!.userAcceleration.x)"
-//                self.userAccelerationY = "\(deviceMotion!.userAcceleration.y)"
-//                self.userAccelerationZ = "\(deviceMotion!.userAcceleration.z)"
+                //                self.attitude = "\(deviceMotion!.attitude)"
+                //                self.gravity = "\(deviceMotion!.gravity)"
+                //                self.rotationRate = "\(deviceMotion!.rotationRate)"
+                //                self.userAcceleration = "\(deviceMotion!.userAcceleration)"
+                self.userAccelerationX = "\(deviceMotion!.userAcceleration.x)"
+                self.userAccelerationY = "\(deviceMotion!.userAcceleration.y)"
+                self.userAccelerationZ = "\(deviceMotion!.userAcceleration.z)"
             }
-            //sleepって何だろ
+            
+        
+        if WCSession.default.isReachable{
+            let date = Date()
+            self.applicationDict = [
+                "date": String(describing: date),
+                "userAccelerationX": self.userAccelerationX,
+                "userAccelerationY": self.userAccelerationY,
+                "userAccelerationZ": self.userAccelerationZ
+//                "attitude": self.attitude,
+//                "gravity": self.gravity,
+//                "rotationRate": self.rotationRate,
+//                "userAcceleration": self.userAcceleration
+            ]
             //これを入れないと早々にスプレッドシートが埋まりそうだから
             sleep(UInt32(0.5))
-            self.sendMessage()
-            
-        }
-    }
-    
-    
-    
-    func activateSession(){
-        if WCSession.isSupported(){
-            let session: WCSession = WCSession.default
-            session.delegate = self 
-            session.activate()
-        }
-    }
-    func sendMessage(){
-        if WCSession.default.isReachable{
-            applicationDict = [
-//                "userAccelerationX": userAccelerationX,
-//                "userAccelerationY": userAccelerationY,
-//                "userAccelerationZ": userAccelerationZ
-                "attitude": self.attitude,
-                "gravity": self.gravity,
-                "rotationRate": self.rotationRate,
-                "userAcceleration": self.userAcceleration
-            ]
             
             WCSession.default.sendMessage(self.applicationDict, replyHandler: {(reply) -> Void in
                 print(reply)
@@ -90,7 +111,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }
         }
     }
-    
+ }
+
     @available(watchOS 2.2, *)
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("activationDidComplete")
