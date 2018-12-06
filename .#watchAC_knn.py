@@ -1,1 +1,0 @@
-Yutahand@yutafujiino-MacBook-puro.local.30594
