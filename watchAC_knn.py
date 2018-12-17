@@ -1,8 +1,3 @@
-import pandas as pd
-
-# csvファイルのimportと一緒にカラムを設定
-shake = pd.read_csv('shake.csv', names=['userAccelerate.x', 'userAccelerate.y', 'userAccelerate.z'])
-print(accelD)
 
 '''
 irisのサンプルでは説明変数1行に対して目的変数が1個だったが、
@@ -21,4 +16,5 @@ g = np.loadtxt('wave1.csv', delimiter=',', dtype='int32')
 np.save('shake1.npy', f)
 np.save('wave1.npy', g)
 
+print(shake1.npy)
 
