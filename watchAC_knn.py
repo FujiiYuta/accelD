@@ -13,6 +13,12 @@ Y = shake.target    # 目的変数
 
 import numpy as np
 
-#データの読み込み及び配列に変換
-f =
+# データの読み込み及び配列に変換
+f = np.loadtxt('shake1.csv', delimiter=',', dtype='int32')
+g = np.loadtxt('wave1.csv', delimiter=',', dtype='int32')
+
+# 配列の保存
+np.save('shake1.npy', f)
+np.save('wave1.npy', g)
+
 
