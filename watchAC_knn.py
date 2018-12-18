@@ -41,3 +41,22 @@ train = dataset[:7]
 test = dataset[7:]
 
 # dataとlabelに分割
+# [-1]は「最後の要素」という意味
+# axisはなんかよくわからなかった
+# 座標軸、ということらしい
+# 1は横方向(つまり二次元配列を縦線で割るということ
+train_data, train_label = np.split(train, [-1], axis=1)
+test_data, test_label = np.spilit(test, [-1], axis=1)
+
+# datasetの保存
+
+x = (train_data, train_label, test_data, test_label)
+np.save('dataset.npy', x)
+
+# 次回呼び出し
+# train_data, train_label, test_data, test_label = np.load('dataset.npy')
+
+# ここまででデータセットの準備は終了
+# やっと機械学習のフェーズへ
+
+
