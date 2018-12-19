@@ -58,5 +58,8 @@ np.save('dataset.npy', x)
 
 # ここまででデータセットの準備は終了
 # やっと機械学習のフェーズへ
-
-
+# sklearnを用いて、knnで機械学習
+import matplotlib.pyplot as plt
+%matplotlib inline
+from matplotlib.colors import ListedColormap
+from sklearn import neighbors, datasets, metrics
