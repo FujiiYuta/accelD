@@ -63,9 +63,33 @@ print(len(train_data), len(test_data))
 # ここまででデータセットの準備は終了
 # やっと機械学習のフェーズへ
 # sklearnを用いて、knnで機械学習
-'''
+# その前にカラーマップ
+
 import matplotlib.pyplot as plt
 %matplotlib inline
 from matplotlib.colors import ListedColormap
-from sklearn import neighbors, datasets, metrics
+from sklearn import neighbors, metrics
+
+# カラーマップの作成
+cmap_light = ListedColormap(['#FFAAAA', '#AAAAFF'])
+cmap_bold = ListedColormap(['#FF0000', '#0000FF'])
+
+# 変数の設定
+h = 0.1 # とりあえずメッシュサイズは0.1でいこう
+k_list = [1, 5, 10, 30] # いろんなkの数で試す
+weights_list = ['uniform', 'distance']
 '''
+uniform : データ間の距離に寄らず一様な重みを与える。デフォルト
+distance : 距離が近いデータほどその影響が大きくなるよう、距離に反比例して重みが与えられる
+他にも変数はあるらしい
+'''
+score = np.zeros((len(k_list)*2, 5)) # scoreってなんだ
+
+# 学習
+
+plt.figure(figsize=(8*len(k_list), 12))
+i = 1 #subplot用
+for weights in weights_list:
+    for k in k_list:
+        clf = neighbors.KNeighborsClassifier(k, weights = weights)
+        
