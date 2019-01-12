@@ -92,4 +92,5 @@ i = 1 #subplot用
 for weights in weights_list:
     for k in k_list:
         clf = neighbors.KNeighborsClassifier(k, weights = weights)
-        
+        clf.fit(test_data, test_label)
+        x1_min, x1_max = 
