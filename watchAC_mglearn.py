@@ -57,6 +57,8 @@ np.save('dataset.npy', x)
 #dataの数をそれぞれ出力
 print("train_data", "test_data")
 print(len(train_data), len(test_data))
+# print("train_label", "test_label")
+# print(train_label,test_label)
 # 次回呼び出し
 # train_data, train_label, test_data, test_label = np.load('dataset.npy')
 
@@ -64,12 +66,14 @@ print(len(train_data), len(test_data))
 # やっと機械学習のフェーズへ
 # sklearnを用いて、knnで機械学習
 # その前にカラーマップ
-
+import pandas as pd
+from pandas.plotting import scatter_matrix
+import mglearn
 import matplotlib.pyplot as plt
 # %matplotlib inline
 from matplotlib.colors import ListedColormap
 from sklearn import neighbors, metrics
-
+'''
 # カラーマップの作成
 cmap_light = ListedColormap(['#FFAAAA', '#AAAAFF'])
 cmap_bold = ListedColormap(['#FF0000', '#0000FF'])
@@ -79,9 +83,11 @@ h = 0.1 # とりあえずメッシュサイズは0.1でいこう
 k_list = [1, 5, 10, 30] # いろんなkの数で試す
 weights_list = ['uniform', 'distance']
 '''
+'''
 uniform : データ間の距離に寄らず一様な重みを与える。デフォルト
 distance : 距離が近いデータほどその影響が大きくなるよう、距離に反比例して重みが与えられる
 他にも変数はあるらしい
+'''
 '''
 score = np.zeros((len(k_list)*2, 5)) # scoreってなんだ
 
@@ -94,3 +100,14 @@ for weights in weights_list:
         clf = neighbors.KNeighborsClassifier(k, weights = weights)
         clf.fit(test_data, test_label)
         x1_min, x1_max = 
+'''
+print(train_data.shape)
+print(test_data.shape)
+accelD_dataframe = pd.DataFrame(train_data)
+print(accelD_dataframe.head(30))
+# print(train_label)
+print(np.ravel(train_label))
+train_ft = np.ravel(train_label)
+grr = pd.plotting.scatter_matrix(accelD_dataframe, figsize=(15, 15), marker='o', hist_kwds={'bins':20}, s=60, alpha=8, cmap=mglearn.cm3, c=train_ft)
+plt.show()
+
