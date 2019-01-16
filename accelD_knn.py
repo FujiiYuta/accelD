@@ -52,21 +52,28 @@ print(len(train_data), len(test_data))
 
 from sklearn.neighbors import KNeighborsClassifier
 import matplotlib.pyplot as plt
-'''
-clf = KNeighborsClassifier(n_neighbors=1)
-clf.fit(train_data, train_label)
-clf.score(test_data, test_label)
-'''
 
 train_data = train_data.astype(np.float64)
 train_label = train_label.astype(np.float64)
 test_data = test_data.astype(np.float64)
 test_label = test_label.astype(np.float64)
 # エラー出たからtrain_labelとtest_labeを整形
-print(train_label)
+# print(train_label)
 train_ft = np.ravel(train_label)
-print(train_ft)
+# print(train_ft)
 test_ft = np.ravel(test_label)
+
+
+clf = KNeighborsClassifier(n_neighbors=1)
+clf.fit(train_data, train_ft)
+print(clf.score(test_data, test_ft))
+score = clf.score(test_data, test_ft)
+print('認識精度')
+print(score*100 , '%')
+
+
+
+'''
 accurate = []
 k_range = []
 
@@ -79,3 +86,4 @@ for k in range(1, 90):
     plt.plot(k_range, accurate)
 
 plt.show()
+'''
