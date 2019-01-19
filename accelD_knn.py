@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import numpy as np
 # accelD_dataset.pyから配列だけ持ってくる
 import accelD_dataset
@@ -88,3 +89,6 @@ for k in range(1, 90):
 plt.show()
 '''
 import coremltools
+coreml_model = coremltools.converters.sklearn.convert(clf, ['accel.x', 'accel.y', 'accel.z'], 'gesture')
+
+coreml_model.save('accelD.mlmodel')
