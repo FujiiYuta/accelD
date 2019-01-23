@@ -1,8 +1,5 @@
-watchAC.csv
 *.py~
 *.csv~
-watchAC_sample.csv
-shake1.csv
-wave1.csv
-
+*.csv
+*.npy
 watchAC_csv.py
