@@ -54,7 +54,7 @@ test_ft = np.ravel(test_label)
 # データセットの準備完了
 from sklearn import metrics
 from sklearn.ensemble import RandomForestClassifier
-
+import coremltools
 clf = RandomForestClassifier() #random_state=0がいるかわからん
 
 clf.fit(train_data, train_ft) # train_ft作らなきゃダメかも
@@ -66,4 +66,13 @@ ac_score = metrics.accuracy_score(test_ft, pre)
 print u'正解率',ac_score*100,'%'
 
 #mlmodelに変換
+
+coreml_model = coremltools.converters.sklearn.convert(clf, input_features=None, output_feature_names='gesture')
+coreml_model.save('accelD.mlmodel')
+
+# チェック
+
+loaded_model = coremltools.models.MLModel('accelD.mlmodel')
+
+#print loaded_model.get_spec()
 

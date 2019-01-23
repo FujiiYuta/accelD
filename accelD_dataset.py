@@ -628,3 +628,4 @@ none = np.vstack((no_flat, no2_flat, no3_flat, no4_flat, no5_flat, no6_flat, no7
 print(shake)
 print(wave)
 print(none)
+os.chdir('..')
