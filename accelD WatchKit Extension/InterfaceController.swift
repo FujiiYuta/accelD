@@ -12,116 +12,42 @@ import Foundation
 import WatchConnectivity
 import CoreMotion
 
-
-class InterfaceController: WKInterfaceController, WCSessionDelegate {
-
-    @IBOutlet var StartBtn: WKInterfaceButton!
-    
-    @IBOutlet var StopBtn: WKInterfaceButton!
-    
-    @IBAction func pushStartBtn(){
-        StartBtn.setHidden(true)
-        StopBtn.setHidden(false)
-        print("start")
-        sendMessage()
-    }
-    
-    @IBAction func pushStopBtn(){
-    motionManager.stopDeviceMotionUpdates()
-        print("stop")
-        StartBtn.setHidden(false)
-        StopBtn.setHidden(true)
-        //とりあえずつけてみるが
-        sendMessage()
-    }
-    
-    
-    
-    //変数の定義など
+class InterfaceController: WKInterfaceController {
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
-    
-    var applicationDict = [String: String]()
-//    var attitude = ""
-//    var gravity = ""
-//    var rotationRate = ""
-//    var userAcceleration = ""
-    var userAccelerationX = ""
-    var userAccelerationY = ""
-    var userAccelerationZ = ""
-    
+    @IBOutlet weak var Button1: WKInterfaceButton!
+    var i = 0
     override func awake(withContext context: Any?) {
-        // Configure interface objects here.
-        print("test")
+        
         super.awake(withContext: context)
-        activateSession()
-        StopBtn.setHidden(true)
-    }
-    
-    
-    func activateSession(){
-        if WCSession.isSupported(){
-            let session: WCSession = WCSession.default
-            session.delegate = self 
-            session.activate()
-        }
-    }
-    func sendMessage(){
-        if !motionManager.isDeviceMotionAvailable{
-            print("Device Motion is not available")
+        if !motionManager.isDeviceMotionAvailable {
+            print("Device Motion is not available.")
             return
         }
-        
-        motionManager.startDeviceMotionUpdates(to: queue){ (deviceMotion: CMDeviceMotion?, error: Error?) in
-            if error != nil{
+        motionManager.accelerometerUpdateInterval = 0.2 //0.2秒間隔で取得(つまり1秒間に5回)
+        //  1秒したら止める処理をしないと
+        motionManager.startDeviceMotionUpdates(to: queue) { (deviceMotion: CMDeviceMotion?, error: Error?) in
+            if error != nil {
                 print("Encountered error: \(error!)")
             }
             
-            if deviceMotion != nil{
-                //ここを3軸の加速度にする
-                //                self.attitude = "\(deviceMotion!.attitude)"
-                //                self.gravity = "\(deviceMotion!.gravity)"
-                //                self.rotationRate = "\(deviceMotion!.rotationRate)"
-                //                self.userAcceleration = "\(deviceMotion!.userAcceleration)"
-                self.userAccelerationX = "\(deviceMotion!.userAcceleration.x)"
-                self.userAccelerationY = "\(deviceMotion!.userAcceleration.y)"
-                self.userAccelerationZ = "\(deviceMotion!.userAcceleration.z)"
-            }
-            
-        
-        if WCSession.default.isReachable{
-            let date = Date()
-            self.applicationDict = [
-                "date": String(describing: date),
-                "userAccelerationX": self.userAccelerationX,
-                "userAccelerationY": self.userAccelerationY,
-                "userAccelerationZ": self.userAccelerationZ
-//                "attitude": self.attitude,
-//                "gravity": self.gravity,
-//                "rotationRate": self.rotationRate,
-//                "userAcceleration": self.userAcceleration
-            ]
-            //これを入れないと早々にスプレッドシートが埋まりそうだから
-            sleep(UInt32(0.5))
-            
-            WCSession.default.sendMessage(self.applicationDict, replyHandler: {(reply) -> Void in
-                print(reply)
-            }){(error) -> Void in
-                print(error)
+            if deviceMotion != nil && self.i < 100 {
+                //                sleep(UInt32(0.5))
+                
+                print("\(deviceMotion!.userAcceleration.x), \(deviceMotion!.userAcceleration.y), \(deviceMotion!.userAcceleration.z)")
+                self.i = self.i + 1
+                //                print("userAccelerationX = \(deviceMotion!.userAcceleration.x)")
+                //                print("userAccelerationY = \(deviceMotion!.userAcceleration.y)")
+                //                print("userAccelerationZ = \(deviceMotion!.userAcceleration.z)")
+                
             }
         }
+        // Configure interface objects here.
     }
- }
-
-    @available(watchOS 2.2, *)
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print("activationDidComplete")
+    @IBAction func buttonTopped() {
+        print("------------------------")
+        self.i = 0
     }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        
-    }
-    
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
@@ -132,5 +58,5 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
+    
 }

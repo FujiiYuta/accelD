@@ -12,24 +12,7 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="accelD_WatchKit_App" customModuleProvider="target">
-                    <items>
-                        <button width="1" alignment="center" verticalAlignment="center" title="Start" id="ffH-G0-I31" userLabel="StartBtn">
-                            <connections>
-                                <action selector="pushStartBtn" destination="AgC-eL-Hgc" id="UVc-P5-Poy"/>
-                            </connections>
-                        </button>
-                        <button width="1" widthAdjustment="1" alignment="center" verticalAlignment="center" title="Stop" id="bSx-nQ-GxH" userLabel="StopBtn">
-                            <connections>
-                                <action selector="pushStopBtn" destination="AgC-eL-Hgc" id="3f3-9r-ZfX"/>
-                            </connections>
-                        </button>
-                    </items>
-                    <connections>
-                        <outlet property="StartBtn" destination="ffH-G0-I31" id="YDJ-kL-yFj"/>
-                        <outlet property="StopBtn" destination="bSx-nQ-GxH" id="5YR-8j-8y9"/>
-                    </connections>
-                </controller>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="accelD_WatchKit_App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
