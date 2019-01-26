@@ -11,11 +11,24 @@ import Foundation
 //新たに二つのライブラリをインポート
 import WatchConnectivity
 import CoreMotion
+import HealthKit
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
+    
+    let healthStore = HKHealthStore()
+    var currentWorkoutSession: HKWorkoutSession?
+    
+    var isRunnning: Bool?
+    
+    weak var timer: Timer?
+    var intervalSec: TimeInterval = 300.0
+    
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
+    
     @IBOutlet weak var Button1: WKInterfaceButton!
+    @IBOutlet weak var Button2: WKInterfaceButton!
+    
     var i = 0
     override func awake(withContext context: Any?) {
         
@@ -44,6 +57,11 @@ class InterfaceController: WKInterfaceController {
         }
         // Configure interface objects here.
     }
+    
+    @IBAction func toggleSession() {
+        
+    }
+    
     @IBAction func buttonTopped() {
         print("------------------------")
         self.i = 0

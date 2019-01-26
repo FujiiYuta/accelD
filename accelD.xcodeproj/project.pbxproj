@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FDB67D2021FC94C7007C99EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB67D1F21FC94C7007C99EE /* HealthKit.framework */; };
 		FDC44AE12182B5D600733F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44AE02182B5D600733F21 /* AppDelegate.swift */; };
 		FDC44AE32182B5D600733F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44AE22182B5D600733F21 /* ViewController.swift */; };
 		FDC44AE62182B5D600733F21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC44AE42182B5D600733F21 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FDB67D1F21FC94C7007C99EE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		FDC44ADD2182B5D600733F21 /* accelD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accelD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDC44AE02182B5D600733F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDC44AE22182B5D600733F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDB67D2021FC94C7007C99EE /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FDB67D1E21FC94C6007C99EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FDB67D1F21FC94C7007C99EE /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FDC44AD42182B5D600733F21 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +121,7 @@
 				FDC44AF32182B5D800733F21 /* accelD WatchKit App */,
 				FDC44B022182B5D900733F21 /* accelD WatchKit Extension */,
 				FDC44ADE2182B5D600733F21 /* Products */,
+				FDB67D1E21FC94C6007C99EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
