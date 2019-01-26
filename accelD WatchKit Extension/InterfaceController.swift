@@ -73,7 +73,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
             conf.activityType = .other
             
             do{
-                let session = try HKWorkoutSession(configuration: conf)
+                let session = try HKWorkoutSession(healthStore: healthStore, configuration: conf)
                 session.delegate = self
                 workoutStartDate = Date()
                 currentWorkoutSession = session
