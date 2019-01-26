@@ -17,7 +17,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     
     let healthStore = HKHealthStore()
     var currentWorkoutSession: HKWorkoutSession?
-    
+    var workoutStartDate: Date?
     var isRunnning: Bool?
     
     weak var timer: Timer?
@@ -60,11 +60,45 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     
     @IBAction func toggleSession() {
         
+        if isRunnning == true{
+            isRunnning = false
+            
+            
+            currentWorkoutSession?.end()
+            self.timer?.invalidate()
+        } else {
+            isRunnning = true
+            
+            let conf = HKWorkoutConfiguration()
+            conf.activityType = .other
+            
+            do{
+                let session = try HKWorkoutSession(configuration: conf)
+                session.delegate = self
+                workoutStartDate = Date()
+                currentWorkoutSession = session
+               currentWorkoutSession?.startActivity(with: workoutStartDate)
+                
+                self.timer?.invalidate()
+                self.timer = Timer.scheduledTimer(
+                    timeInterval: self.intervalSec,
+                    target: self, selector: #selector(play),
+                    userInfo: nil, repeats: true)
+            } catch let e as NSError {
+                fatalError("*** Unable to create the workout session: \(e.localizedDescription) ***")
+            }
+        }
+        //ここで処理する
+        
     }
     
     @IBAction func buttonTopped() {
         print("------------------------")
         self.i = 0
+    }
+    
+    @objc func play(){
+        
     }
     
     override func willActivate() {
