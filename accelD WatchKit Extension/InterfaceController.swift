@@ -14,6 +14,14 @@ import CoreMotion
 import HealthKit
 
 class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
+    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
+        
+    }
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
+        
+    }
+    
     
     let healthStore = HKHealthStore()
     var currentWorkoutSession: HKWorkoutSession?
