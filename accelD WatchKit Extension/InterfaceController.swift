@@ -59,6 +59,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
                 self.i = self.i + 1
                 //                print("userAccelerationX = \(deviceMotion!.userAcceleration.x)")
                 //                print("userAccelerationY = \(deviceMotion!.userAcceleration.y)")
+                
                 //                print("userAccelerationZ = \(deviceMotion!.userAcceleration.z)")
                 
             }

@@ -16,7 +16,7 @@
                     <items>
                         <button width="1" alignment="left" verticalAlignment="center" title="Start!" id="4Uv-Z2-nqw" userLabel="Button2">
                             <connections>
-                                <action selector="toggleSession" destination="AgC-eL-Hgc" id="fKX-bA-hLh"/>
+                                <action selector="toggleSession" destination="AgC-eL-Hgc" id="cPa-a8-Vdm"/>
                             </connections>
                         </button>
                         <button width="1" alignment="left" verticalAlignment="center" title="-------------------" id="QFg-gy-WSR" userLabel="Button1">
