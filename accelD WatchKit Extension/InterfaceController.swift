@@ -137,11 +137,9 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
         super.didDeactivate()
     }
     
-    func coreMLRequest(for request: VNRequest, error: Error?){
+    func coreMLRequest(){
         // 機械学習用のにモデルのインポート
-        guard let model = try? VNCoreMLModel(for: accelD().model) else {
-            fatalError("faild create VMCoreMLModel")
-        }
+                
         
     }
     
