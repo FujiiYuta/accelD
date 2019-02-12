@@ -79,7 +79,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
                     print("+++++++++")
                     print(self.arr)
                     //ここでcoreMLRequestにarrを渡すようにしたい
-                    
+                    self.coreMLRequest(array: self.arr)
                 }
             }
         }
@@ -139,7 +139,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
         super.didDeactivate()
     }
     
-    func coreMLRequest(){
+    func coreMLRequest(array: [Double]){
         //arrの初期化
         
         //inputとoutputを作成
