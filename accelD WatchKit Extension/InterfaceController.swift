@@ -41,6 +41,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     @IBOutlet weak var Button2: WKInterfaceButton!
     
     var i = 0
+    var counter = -1
     override func awake(withContext context: Any?) {
         
         super.awake(withContext: context)
@@ -59,12 +60,22 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
                 //                sleep(UInt32(0.5))
                 
                 print("\(deviceMotion!.userAcceleration.x), \(deviceMotion!.userAcceleration.y), \(deviceMotion!.userAcceleration.z)")
+                self.counter = self.counter + 1
+                self.arr[self.counter] = deviceMotion!.userAcceleration.x
+                self.counter = self.counter + 1
+                self.arr[self.counter] = deviceMotion!.userAcceleration.y
+                self.counter = self.counter + 1
+                self.arr[self.counter] = deviceMotion!.userAcceleration.z
+                
                 self.i = self.i + 1
                 //                print("userAccelerationX = \(deviceMotion!.userAcceleration.x)")
                 //                print("userAccelerationY = \(deviceMotion!.userAcceleration.y)")
                 
                 //                print("userAccelerationZ = \(deviceMotion!.userAcceleration.z)")
-                
+                if(self.i == 100){
+                    print("+++++++++")
+                    print(self.arr)
+                }
             }
         }
         // Configure interface objects here.
