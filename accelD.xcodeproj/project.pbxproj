@@ -10,7 +10,7 @@
 		FDB67D2321FCDF9F007C99EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB67D2221FCDF9F007C99EE /* HealthKit.framework */; };
 		FDB67D2621FCE017007C99EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB67D2521FCE017007C99EE /* HealthKit.framework */; };
 		FDC44AE12182B5D600733F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44AE02182B5D600733F21 /* AppDelegate.swift */; };
-		FDC44AE32182B5D600733F21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44AE22182B5D600733F21 /* ViewController.swift */; };
+		FDC44AE32182B5D600733F21 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44AE22182B5D600733F21 /* FirstViewController.swift */; };
 		FDC44AE62182B5D600733F21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC44AE42182B5D600733F21 /* Main.storyboard */; };
 		FDC44AE82182B5D800733F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDC44AE72182B5D800733F21 /* Assets.xcassets */; };
 		FDC44AEB2182B5D800733F21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC44AE92182B5D800733F21 /* LaunchScreen.storyboard */; };
@@ -22,6 +22,7 @@
 		FDC44B062182B5D900733F21 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44B052182B5D900733F21 /* ExtensionDelegate.swift */; };
 		FDC44B082182B5D900733F21 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44B072182B5D900733F21 /* NotificationController.swift */; };
 		FDC44B0A2182B5D900733F21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDC44B092182B5D900733F21 /* Assets.xcassets */; };
+		FDF98AC522096AD100D8E0A3 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF98AC422096AD100D8E0A3 /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +74,7 @@
 		FDB67D2521FCE017007C99EE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		FDC44ADD2182B5D600733F21 /* accelD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accelD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDC44AE02182B5D600733F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FDC44AE22182B5D600733F21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FDC44AE22182B5D600733F21 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		FDC44AE52182B5D600733F21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FDC44AE72182B5D800733F21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FDC44AEA2182B5D800733F21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		FDC44B092182B5D900733F21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FDC44B0B2182B5D900733F21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDC44B0C2182B5D900733F21 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		FDF98AC422096AD100D8E0A3 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +148,8 @@
 			children = (
 				FDB67D2121FCDF9F007C99EE /* accelD.entitlements */,
 				FDC44AE02182B5D600733F21 /* AppDelegate.swift */,
-				FDC44AE22182B5D600733F21 /* ViewController.swift */,
+				FDC44AE22182B5D600733F21 /* FirstViewController.swift */,
+				FDF98AC422096AD100D8E0A3 /* SecondViewController.swift */,
 				FDC44AE42182B5D600733F21 /* Main.storyboard */,
 				FDC44AE72182B5D800733F21 /* Assets.xcassets */,
 				FDC44AE92182B5D800733F21 /* LaunchScreen.storyboard */,
@@ -327,7 +330,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDC44AE32182B5D600733F21 /* ViewController.swift in Sources */,
+				FDF98AC522096AD100D8E0A3 /* SecondViewController.swift in Sources */,
+				FDC44AE32182B5D600733F21 /* FirstViewController.swift in Sources */,
 				FDC44AE12182B5D600733F21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

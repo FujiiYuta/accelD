@@ -34,6 +34,9 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     let motionManager = CMMotionManager()
     let queue = OperationQueue()
     
+    //加速度を配列に入れる処理に使う値
+    var arr : [Double] = []
+    
     @IBOutlet weak var Button1: WKInterfaceButton!
     @IBOutlet weak var Button2: WKInterfaceButton!
     
