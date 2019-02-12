@@ -78,6 +78,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
                 if(self.i == 100){
                     print("+++++++++")
                     print(self.arr)
+                    //ここでcoreMLRequestにarrを渡すようにしたい
+                    
                 }
             }
         }
@@ -138,7 +140,13 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     }
     
     func coreMLRequest(){
-        // 機械学習用のにモデルのインポート
+        //arrの初期化
+        
+        //inputとoutputを作成
+        
+        //outputの出力
+        
+        //値が取れなかった時の処理
                 
         
     }
