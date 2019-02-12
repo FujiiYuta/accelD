@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FDB67D2321FCDF9F007C99EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB67D2221FCDF9F007C99EE /* HealthKit.framework */; };
 		FDB67D2621FCE017007C99EE /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB67D2521FCE017007C99EE /* HealthKit.framework */; };
+		FDBC97632213426000C69E07 /* accelD.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FDBC97622213426000C69E07 /* accelD.mlmodel */; };
 		FDC44AE12182B5D600733F21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44AE02182B5D600733F21 /* AppDelegate.swift */; };
 		FDC44AE32182B5D600733F21 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC44AE22182B5D600733F21 /* FirstViewController.swift */; };
 		FDC44AE62182B5D600733F21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDC44AE42182B5D600733F21 /* Main.storyboard */; };
@@ -72,6 +73,7 @@
 		FDB67D2221FCDF9F007C99EE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		FDB67D2421FCE017007C99EE /* accelD WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "accelD WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		FDB67D2521FCE017007C99EE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		FDBC97622213426000C69E07 /* accelD.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = accelD.mlmodel; path = MLMODEL/accelD.mlmodel; sourceTree = SOURCE_ROOT; };
 		FDC44ADD2182B5D600733F21 /* accelD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = accelD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDC44AE02182B5D600733F21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDC44AE22182B5D600733F21 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -122,9 +124,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FDBC97612213422200C69E07 /* MLMODEL */ = {
+			isa = PBXGroup;
+			children = (
+				FDBC97622213426000C69E07 /* accelD.mlmodel */,
+			);
+			path = MLMODEL;
+			sourceTree = "<group>";
+		};
 		FDC44AD42182B5D600733F21 = {
 			isa = PBXGroup;
 			children = (
+				FDBC97612213422200C69E07 /* MLMODEL */,
 				FDC44ADF2182B5D600733F21 /* accelD */,
 				FDC44AF32182B5D800733F21 /* accelD WatchKit App */,
 				FDC44B022182B5D900733F21 /* accelD WatchKit Extension */,
@@ -332,6 +343,7 @@
 			files = (
 				FDF98AC522096AD100D8E0A3 /* SecondViewController.swift in Sources */,
 				FDC44AE32182B5D600733F21 /* FirstViewController.swift in Sources */,
+				FDBC97632213426000C69E07 /* accelD.mlmodel in Sources */,
 				FDC44AE12182B5D600733F21 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

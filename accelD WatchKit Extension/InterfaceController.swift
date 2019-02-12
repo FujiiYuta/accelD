@@ -13,6 +13,9 @@ import WatchConnectivity
 import CoreMotion
 import HealthKit
 
+//  機械学習用ライブラリ
+import CoreML
+
 class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
         
@@ -42,6 +45,10 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     
     var i = 0
 //    var counter = -1
+    
+    //  機械学習用モデルの読み込み
+    let model = accelD()
+    
     override func awake(withContext context: Any?) {
         
         super.awake(withContext: context)
@@ -128,6 +135,14 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    func coreMLRequest(for request: VNRequest, error: Error?){
+        // 機械学習用のにモデルのインポート
+        guard let model = try? VNCoreMLModel(for: accelD().model) else {
+            fatalError("faild create VMCoreMLModel")
+        }
+        
     }
     
 }
