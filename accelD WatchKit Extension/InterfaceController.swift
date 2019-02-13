@@ -140,15 +140,17 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     }
     
     func coreMLRequest(array: [Double]){
-        //arrの初期化
+        //      inputの作成
+        var input = array
+        //  outputを作成
+        let output = try! model.prediction(input: input)
+        //  outputの出力
+        print(output.classLabel)      // 1位候補のラベル
+        print(output.classLabelProbs) // 各クラスのラベルと確率
+
+        //  遅延を発生させたほうがいいかもしれんな
         
-        //inputとoutputを作成
-        
-        //outputの出力
-        
-        //値が取れなかった時の処理
-                
-        
+
     }
     
 }
