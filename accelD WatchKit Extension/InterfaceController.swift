@@ -141,7 +141,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     
     func coreMLRequest(array: [Double]){
         //      inputの作成
-        let input = try? MLMultiArray(shape: [200], dataType: MLMultiArrayDataType.double)
+        let input = try? MLMultiArray(shape: [300], dataType: MLMultiArrayDataType.double)
         //      input typeの変換
         
         //  outputを作成
