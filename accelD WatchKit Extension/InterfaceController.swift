@@ -141,12 +141,14 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     
     func coreMLRequest(array: [Double]){
         //      inputの作成
-        var input = array
+        var input = try? MLMultiArray(shape: [200], dataType: MLMultiArrayDataType.double)
+        //      input typeの変換
+        
         //  outputを作成
-        let output = try! model.prediction(input: input)
+        let output = try! model.prediction(input: input!)
         //  outputの出力
-        print(output.classLabel)      // 1位候補のラベル
-        print(output.classLabelProbs) // 各クラスのラベルと確率
+        print(output.gesture)      // 1位候補のラベル
+        print(output.classProbability) // 各クラスのラベルと確率
 
         //  遅延を発生させたほうがいいかもしれんな
         
