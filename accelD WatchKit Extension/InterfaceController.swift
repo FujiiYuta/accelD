@@ -80,6 +80,9 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
                     print(self.arr)
                     //ここでcoreMLRequestにarrを渡すようにしたい
                     self.coreMLRequest(array: self.arr)
+                    //arrの中身を捨てる
+                    self.arr.removeAll()
+                    
                 }
             }
         }
@@ -142,9 +145,12 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     func coreMLRequest(array: [Double]){
         //      inputの作成
         let input = try? MLMultiArray(shape: [300], dataType: MLMultiArrayDataType.double)
-        //      input typeの変換
-        //
-        input![0] = array[0] as NSNumber
+        //  input typeの変換
+        //  for文でなんとか
+        for i in 0...299 {
+            input![i] = array[i] as NSNumber
+        }
+        
         //  outputを作成
         let output = try! model.prediction(input: input!)
         //  outputの出力
