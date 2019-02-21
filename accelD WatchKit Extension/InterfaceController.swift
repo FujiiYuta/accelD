@@ -12,6 +12,7 @@ import Foundation
 import WatchConnectivity
 import CoreMotion
 import HealthKit
+import UserNotifications
 
 //  機械学習用ライブラリ
 import CoreML
