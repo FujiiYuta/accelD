@@ -162,9 +162,45 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
         
         print(output.classProbability) // 各クラスのラベルと確率
 
-        //  遅延を発生させたほうがいいかもしれんな
+        //  ここから通知の実装
+        if output.gesture == "1" {
+            //output.gestureはstring型らしい
+            //絶対1以外にする方法あったな。それはcoremltools側の問題かな
+            NotificationForShake()
+            print("shake")
+        }else if output.gesture == "2" {
+            NotificationForWave()
+            print("wave")
+        }else{
+            print("none")
+        }
         
 
+    }
+    func NotificationForShake (){
+        print("shake success")
+        // 握手をした時の通知処理
+        let content = UNMutableNotificationContent()
+        content.title = "accelD"
+        content.body = "握手しましたね\n仲良し度10です"
+        content.sound = UNNotificationSound.default
+        //ここで遅延を発生させられるけど、とりあえずtimeInterval: 0にする
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+        let request = UNNotificationRequest(identifier: "immediately", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func NotificationForWave(){
+        //手を振った時の通知処理
+        print("wave succeess")
+        let content = UNMutableNotificationContent()
+        content.title = "accelD"
+        content.body = "手を振りましたね\n仲良し度20です"
+        content.sound = UNNotificationSound.default
+        //identifierをlaterはじゃなくするのも良さそう
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+        let request = UNNotificationRequest(identifier: "immediately", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
 }
