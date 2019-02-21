@@ -143,11 +143,16 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
         //      inputの作成
         let input = try? MLMultiArray(shape: [300], dataType: MLMultiArrayDataType.double)
         //      input typeの変換
-        
+        //
+        input![0] = array[0] as NSNumber
         //  outputを作成
         let output = try! model.prediction(input: input!)
         //  outputの出力
+        print("~~~~~~")
+        print(input as Any)
+        
         print(output.gesture)      // 1位候補のラベル
+        
         print(output.classProbability) // 各クラスのラベルと確率
 
         //  遅延を発生させたほうがいいかもしれんな
