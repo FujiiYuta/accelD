@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,20 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // notification center (singleton)
-        let center = UNUserNotificationCenter.current()
-        
-        // ------------------------------------
-        // 前準備: ユーザに通知の許可を求める
-        // ------------------------------------
-        
-        // request to notify for user
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-                print("Allowed")
-            } else {
-                print("Didn't allowed")
-            }
-        }
+        UNUserNotificationCenter.current()
+            .requestAuthorization(options: [.badge, .sound, .alert], completionHandler: { (granted, error) in
+                if !granted {
+                    let alert = UIAlertController(title: "エラー", message: "プッシュ通知が拒否されています。設定から有効にしてください。", preferredStyle: .alert)
+                    let closeAction = UIAlertAction(title: "閉じる", style: .default) { _ in exit(1) }
+                    alert.addAction(closeAction)
+                    self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                }
+            })
+        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
         return true
     }
 
