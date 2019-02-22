@@ -18,6 +18,11 @@ import UserNotifications
 import CoreML
 
 class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSessionDelegate{
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+        
+    }
+    
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
         
@@ -52,11 +57,18 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     let model = accelD()
     
     // WatchConnectivity用
-    let wcSession = WCSession.default()
+    let wcSession = WCSession.default
 
     override func awake(withContext context: Any?) {
         
         super.awake(withContext: context)
+        
+        // iPhoneとAppleWatchの連携チェック
+        if WCSession.isSupported() {
+            wcSession.delegate = self
+            wcSession.activate()
+        }
+        
         if !motionManager.isDeviceMotionAvailable {
             print("Device Motion is not available.")
             return
@@ -92,6 +104,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
             }
         }
         // Configure interface objects here.
+        
+        
     }
     
     @IBAction func toggleSession() {
@@ -148,6 +162,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
     }
     
     func coreMLRequest(array: [Double]){
+        /*
         //      inputの作成
         let input = try? MLMultiArray(shape: [300], dataType: MLMultiArrayDataType.double)
         //  input typeの変換
@@ -155,6 +170,16 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
         for i in 0...299 {
             input![i] = array[i] as NSNumber
         }
+        */
+        
+
+        //FirstViewControllerへ値を送る
+        
+        sendArraytoiPhone(Array: array)
+        
+        
+        /*
+        //--------------------------------//
         
         //  outputを作成
         let output = try! model.prediction(input: input!)
@@ -165,7 +190,8 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
         print(output.gesture)      // 1位候補のラベル
         
         print(output.classProbability) // 各クラスのラベルと確率
-
+        
+        
         //  ここから通知の実装
         if output.gesture == "1" {
             //output.gestureはstring型らしい
@@ -178,10 +204,28 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSe
         }else{
             print("none")
         }
-        
+        */
 
     }
-    func NotificationForShake (){
+    
+    func sendArraytoiPhone(Array: [Double]){
+        // iPhoneとの接続チェック
+        if self.wcSession.isReachable {
+            // iPhone側へ送信するデータ
+            let watchMLArray: [String : [Double]] = ["Array": Array]
+            // iPhone側へデータを送信
+            self.wcSession.sendMessage(watchMLArray, replyHandler: {(reply) -> Void in
+                // iPhone側から正常に返答があった場合
+                print(reply)
+            }){(error) -> Void in
+                // TimeOutや型不正、データ長オーバーなど正常に返答がなかった場合
+                print(error)
+            }
+        }
+        
+    }
+    
+    func NotificationForShake(){
         print("shake success")
         // 握手をした時の通知処理
         let content = UNMutableNotificationContent()
