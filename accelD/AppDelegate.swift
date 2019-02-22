@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.window?.rootViewController?.present(alert, animated: true, completion: nil)
                 }
             })
-        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 
@@ -56,3 +56,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([ .badge, .sound, .alert ])
+    }
+}
+
+
+    

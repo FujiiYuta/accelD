@@ -13,8 +13,26 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (success, error) in
+            if success {
+                
+                let stopAction = UNNotificationAction(identifier: "FINISH", title: "Finish", options: .foreground)
+                let anotherAction = UNNotificationAction(identifier: "ANOTHER", title: "Another", options: .foreground)
+                let dismissAction = UNNotificationAction(identifier: "DISMISS", title: "Dismiss", options: UNNotificationActionOptions(rawValue: 0))
+                
+                let notifCategory = UNNotificationCategory(identifier: "ACTIONS", actions: [stopAction,anotherAction,dismissAction], intentIdentifiers: [], options: UNNotificationCategoryOptions(rawValue: 0))
+                
+                center.setNotificationCategories([notifCategory])
+                print("Notifications granted")
+                
+            } else {
+                print("No authorisation")
+            }
+        }
     }
 
+   
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
@@ -54,4 +72,42 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
+}
+extension ExtensionDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+}
+protocol NotificationDelegate {
+    func NotificationForShake()
+    func NotificationForWave()
+}
+
+extension NotificationDelegate {
+    func NotificationForShake(){
+        print("shake success")
+        // 握手をした時の通知処理
+        let content = UNMutableNotificationContent()
+        content.title = "accelD"
+        content.body = "握手しましたね\n仲良し度10です"
+        content.sound = UNNotificationSound.default
+        //ここで遅延を発生させられるけど、とりあえずtimeInterval: 0にする
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+        let request = UNNotificationRequest(identifier: "later", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func NotificationForWave(){
+        //手を振った時の通知処理
+        print("wave succeess")
+        let content = UNMutableNotificationContent()
+        content.title = "accelD"
+        content.body = "手を振りましたね\n仲良し度20です"
+        content.sound = UNNotificationSound.default
+        //identifierをlaterはじゃなくするのも良さそう
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+        let request = UNNotificationRequest(identifier: "immediately", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
 }

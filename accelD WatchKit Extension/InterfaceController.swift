@@ -186,7 +186,7 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
         content.sound = UNNotificationSound.default
         //ここで遅延を発生させられるけど、とりあえずtimeInterval: 0にする
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
-        let request = UNNotificationRequest(identifier: "immediately", content: content, trigger: nil)
+        let request = UNNotificationRequest(identifier: "later", content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
