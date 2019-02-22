@@ -17,7 +17,8 @@ import UserNotifications
 //  機械学習用ライブラリ
 import CoreML
 
-class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
+class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate, WCSessionDelegate{
+    
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date) {
         
     }
@@ -50,6 +51,9 @@ class InterfaceController: WKInterfaceController, HKWorkoutSessionDelegate{
     //  機械学習用モデルの読み込み
     let model = accelD()
     
+    // WatchConnectivity用
+    let wcSession = WCSession.default()
+
     override func awake(withContext context: Any?) {
         
         super.awake(withContext: context)
