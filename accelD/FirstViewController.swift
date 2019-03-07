@@ -89,7 +89,7 @@ class FirstViewController: UIViewController, WCSessionDelegate {
         }
         
         replyHandler(["reply" : "OK"])
-        print("bbb")
+//        print("bbb")
     }
     
     func NotificationForShake(){
@@ -97,7 +97,7 @@ class FirstViewController: UIViewController, WCSessionDelegate {
         // 握手をした時の通知処理
         let content = UNMutableNotificationContent()
         content.title = "accelD"
-        content.body = "握手しましたね\n仲良し度10です"
+        content.body = "握手しましたね!!\n仲良し度+10です!"
         content.sound = UNNotificationSound.default
         //ここで遅延を発生させられるけど、とりあえずtimeInterval: 0にする
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
@@ -110,7 +110,7 @@ class FirstViewController: UIViewController, WCSessionDelegate {
         print("wave succeess")
         let content = UNMutableNotificationContent()
         content.title = "accelD"
-        content.body = "手を振りましたね\n仲良し度20です"
+        content.body = "手を振りましたね!!\n仲良し度+20です!"
         content.sound = UNNotificationSound.default
         //identifierをlaterはじゃなくするのも良さそう
         //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)

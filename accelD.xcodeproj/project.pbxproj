@@ -269,6 +269,9 @@
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					FDC44AEE2182B5D800733F21 = {
@@ -281,6 +284,9 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit.watchos = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
