@@ -15,7 +15,7 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let image = UIImage(named: "graph")
+        let image = UIImage(named: "graph2")
         let image2 = UIImage(named: "sns")
         imageView.image = image
         imageView2.image = image2
